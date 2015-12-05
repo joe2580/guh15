@@ -105,7 +105,7 @@ var material = new THREE.ShaderMaterial( {
 */
 camera.position.x = 50;
 camera.position.y = 50;
-camera.position.z = 100;
+camera.position.z = 50;
 
 camera.lookAt(new THREE.Vector3( 50, 50, 0 ));
 
@@ -128,12 +128,16 @@ function update() {
 	*/
 	if (keyboard.pressed("W"))
 	{
-		camera.position.z += 1.5;
+		var dir = new THREE.Vector3(0, 0, -1);
+		dir.applyEuler(camera.rotation);
+		camera.position.add(dir);
 		
 	}
 	else if (keyboard.pressed("S"))
 	{
-		camera.position.z -= 1.5;
+		var dir = new THREE.Vector3(0, 0, 1);
+		dir.applyEuler(camera.rotation);
+		camera.position.add(dir);
 	}
 
 	if (keyboard.pressed("A"))
@@ -142,7 +146,7 @@ function update() {
 	}
 	else if (keyboard.pressed("D"))
 	{
-			camera.position.y -= 1.5;
+			camera.position.y += 1.5;
 	}
 	/*
 	Update VR headset position and apply to camera.
