@@ -10,7 +10,18 @@
         padding: 5px;
         background-color: #ccc;
       }
+      .sendbox {
+        width: 392px;
+      }
     </style>
+  </head>
+
+  <body>
+    <div class="main">
+    </div>
+    <div class="sender">
+      <input type="text" class="sendbox" />
+    </div>
     <script>
       var connection = new WebSocket('ws://52.31.126.150:8080/test');
 
@@ -20,37 +31,25 @@
 
       connection.onerror = function(error) {
         console.log(error);
-        $(".main").append("Error: " + error.message);
+        $(".main").append("Error: " + error + "<br>");
       };
 
       connection.onmessage = function(e) {
-        $(".main").append("<- " + e.data);
+        $(".main").append("<- " + e.data + "<br>");
       };
 
       $(".sendbox").keyup(function (e) {
         if (e.keyCode == 13) {
           try { 
             connection.send($(".sendbox").val());
-            $(".main").append("-> " + $(".sendbox").val());
+            $(".main").append("-> " + $(".sendbox").val() + "<br>");
           } catch(err) {
-            $(".main").append("!! " + err.message);
+            $(".main").append("!! " + err.message + "<br>");
           }
           $(".sendbox").val("");
-          
         }
       });
-
-
     </script>
-  </head>
-
-  <body>
-    <div class="main">
-      
-    </div>
-    <div class="sender">
-      <input type="text" class="sendbox" />
-    </div>
   </body>
 </html>
 
