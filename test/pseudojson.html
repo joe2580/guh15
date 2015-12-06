@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Websockets Test</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style>
+      .main, .namesender, .positionsender, .hoopgetsender, .dedsender {
+        width: 400px;
+        margin: 5px auto;
+        padding: 5px;
+        background-color: #ccc;
+      }
+      .thin {
+        width: 75px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+    </div>
+    <div class="namesender">
+      <input id="nameinput" /> <input value="Send Name" type="button" onclick="sendname()">
+    </div>
+    <div class="positionsender">
+      <input class="thin" id="posx" /><input class="thin" id="posy" /><input class="thin" id="posz" /><br>
+      <input class="thin" id="rotx" /><input class="thin" id="roty" /><input class="thin" id="rotz" />
+      <input class="thin" id="rotw" /><br>
+      <input type="button" value="Send Position" onclick="sendpos()">
+    </div>
+    <div class="hoopgetsender">
+      <input class="thin" id="hoop"><input value="Hoop Get!" type="button" onclick="sendhoop()">
+    </div>
+    <div class="dedsender">
+      <input value="ded" type="button" onclick="sendded()"> 
+    </div>
+    <script>
+      var connection = new WebSocket('ws://52.31.126.150:8080/gameManager');
+      connection.binaryType = 'arraybuffer'
+
+      $(window).on('beforeunload', function(){
+            connection.close();
+      });
+
+      function str2ab(str) {
+        var buf = new ArrayBuffer(str.length*2); // 2 bytes for each char
+        var bufView = new Uint16Array(buf); 
+        for (var i=0, strLen=str.length; i < strLen; i++) {
+          bufView[i] = str.charCodeAt(i);
+        }
+        return buf;
+      }
+
+      connection.onopen = function() {
+        $(".main").append("Connected<br>");
+      };
+
+      connection.onerror = function(error) {
+        console.log(error);
+        $(".main").append("Error: " + error + "<br>");
+      };
+
+      connection.onclose = function() {
+        log("Connection closed")
+      };
+
+      var log = function (a) {
+        $(".main").append(a + "<br>");
+      };
+
+      function ab2str(buf) {
+        return String.fromCharCode.apply(null, new Uint8Array(buf));
+      }
+
+      connection.onmessage = function(e) {
+        console.log(e);
+        var jobject = JSON.parse(e.data);
+        switch(jobject.type) {
+          case 'seed':
+            //set seed = jobject.seed
+            break
+          case 'add':
+            var player;
+            player.id   = jobject.id;
+            player.name = jobject.name
+            break
+          case 'del':
+            //remove from array where id == jobject.id
+            break
+          case 'positions':
+            for(var k in jobject) {
+              if (k == 'positions') continue
+              //player[k.id].pos = (k.xpos, k.ypos, k.zpos)
+              //player[k.id].rot = (k.xrot, k.yrot, k.zrot, k.wrot)
+            }
+            break
+          case 'hoops':
+            for(var k in jobject) {
+              if (k == 'hoops') continue
+              //hoops[k.id].pos = (k.xpos, k.ypos, k.zpos)
+              //hoops[k.id].rot = (k.xrot, k.yrot, k.zrot, k.wrot)
+            }
+            break
+          case 'scores':
+            for(var k in jobject) {
+              if (k == 'scores') continue
+              //scores[k.id] = k.score
+            break
+          case 'feed':
+            // add_to_feed(jobject.message);
+            break 
+        };
+      };
+
+      var sendname = function () {
+        var name   = $("#nameinput").val();
+        connection.send(JSON.stringify({ 'type': 'name', 'name': name });
+      };
+
+      var sendded = function() {
+        connection.send(JSON.stringify({ 'type': 'death' });
+      };
+
+      var sendpos = function() {
+        var jobject = {
+          'type': 'position'
+          'xpos': 
+          'ypos':
+          'zpos':
+          'xrot':
+          'yrot':
+          'zrot':
+          'wrot':
+        }
+        connection.send(jobject);
+      };
+
+      var sendhoop = function() {
+      connection.send(JSON.stringify( { 'type': 'hoop', 'hoopid':  } ));
+      };
+    </script>
+  </body>
+</html>
+
