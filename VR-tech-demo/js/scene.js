@@ -105,11 +105,11 @@ var material = new THREE.ShaderMaterial( {
 */
 camera.position.x = 50;
 camera.position.y = 50;
-camera.position.z = 100;
+camera.position.z = 50;
 
 camera.lookAt(new THREE.Vector3( 50, 50, 0 ));
 
-
+	var keyboard = new THREEx.KeyboardState();
 
 /*
 Request animation frame loop function
@@ -119,7 +119,35 @@ function update() {
 	Apply rotation to cube mesh
 	*/
 	//mesh.rotation.y += 0.01;
-	camera.position.z -= 0.5;
+	
+	//Constantly move forawrd.
+	//camera.position.y += 0.5;
+
+	/*
+	Update Keyboard Controls
+	*/
+	if (keyboard.pressed("W"))
+	{
+		var dir = new THREE.Vector3(0, 0, -1);
+		dir.applyEuler(camera.rotation);
+		camera.position.add(dir);
+		
+	}
+	else if (keyboard.pressed("S"))
+	{
+		var dir = new THREE.Vector3(0, 0, 1);
+		dir.applyEuler(camera.rotation);
+		camera.position.add(dir);
+	}
+
+	if (keyboard.pressed("A"))
+	{
+		camera.position.y -= 1.5;
+	}
+	else if (keyboard.pressed("D"))
+	{
+			camera.position.y += 1.5;
+	}
 	/*
 	Update VR headset position and apply to camera.
 	*/
@@ -137,18 +165,6 @@ function update() {
 Kick off animation loop
 */
 update();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
