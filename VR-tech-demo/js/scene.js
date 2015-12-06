@@ -32,7 +32,7 @@ var map = 0;
 var heightCoeff = 10;
 
 //POWER OF 2.
-map = generateTerrainMap(1024, 1, 4);
+map = generateTerrainMap(1024, 1, 8);
 
 //Geometry object which gets sent to mesh.
 var geometry = new THREE.BufferGeometry();
@@ -86,6 +86,7 @@ for(var x = 0; x < map.length; x++)
 // itemSize = 3 because there are 3 values (components) per vertex
 geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 
+geometry.center();
 var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
 hemiLight.color.setHSL( 0.6, 0.75, 0.5 );
 hemiLight.groundColor.setHSL( 0.095, 0.5, 0.5 );
@@ -94,7 +95,7 @@ scene.add( hemiLight );
 
 var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
 dirLight.position.set( -1, 0.75, 1 );
-dirLight.position.multiplyScalar( 50);
+dirLight.position.multiplyScalar(50);
 dirLight.name = "dirlight";
 // dirLight.shadowCameraVisible = true;
 
@@ -114,8 +115,6 @@ dirLight.shadowCameraFar = 3500;
 dirLight.shadowBias = -0.0001;
 dirLight.shadowDarkness = 0.35;
 
-
-
 //Mesh mat.
 var wireMat = new THREE.MeshBasicMaterial( { wireframe: true  } );
 var material = new THREE.MeshPhongMaterial( { color: 0x999966, specular: 0x9999CC, shininess: 5, shading: THREE.FlatShading } );//material.side = THREE.DoubleSide;	//Make Double Sided.
@@ -124,6 +123,7 @@ var wireMesh = new THREE.Mesh(geometry, wireMat); //Create mesh from geometry.
 //scene.add(wireMesh);
 mesh.renderDepth = 1000.0;  
 mesh.scale.set( 0.5, 0.5, 0.5 );
+mesh.rotateX(-(Math.PI/4));
 scene.add(mesh);
 
 //mesh.visible(false);
@@ -136,11 +136,6 @@ var material = new THREE.ShaderMaterial( {
 	derivatives: true
 } );
 */
-camera.position.x = 50;
-camera.position.y = 50;
-camera.position.z = 50;
-
-camera.lookAt(new THREE.Vector3( 50, 100, 100 ));
 
 	var keyboard = new THREEx.KeyboardState();
 
@@ -156,7 +151,10 @@ function update() {
 	//mesh.rotation.y += 0.01;
 	
 	//Constantly move forawrd.
-	//camera.position.y += 0.5;
+	var dir = new THREE.Vector3(0, 0, -1);
+	dir.applyEuler(camera.rotation);
+	dir.multiplyScalar(0.8);
+	camera.position.add(dir);
 
 	/*
 	Update Keyboard Controls

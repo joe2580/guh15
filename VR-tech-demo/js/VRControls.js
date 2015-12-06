@@ -63,7 +63,7 @@ THREE.VRControls = function ( object, onError ) {
 	// this scale factor allows the user to define how meters
 	// are converted to scene units.
 
-	this.scale = 1;
+	this.scale = 0.2;
 
 	this.update = function () {
 
@@ -76,7 +76,6 @@ THREE.VRControls = function ( object, onError ) {
 			if ( state.orientation !== null ) {
 
 				object.quaternion.copy( state.orientation );
-
 			}
 
 			if ( state.position !== null ) {
