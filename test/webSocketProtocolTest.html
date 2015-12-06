@@ -36,7 +36,7 @@
       <input value="ded" type="button" onclick="sendded()"> 
     </div>
     <script>
-      var connection = new WebSocket('ws://52.31.126.150:8080/test');
+      var connection = new WebSocket('ws://52.31.126.150:8080/gameManager');
       connection.binaryType = 'arraybuffer'
 
       $(window).on('beforeunload', function(){
@@ -45,7 +45,7 @@
 
       function str2ab(str) {
         var buf = new ArrayBuffer(str.length*2); // 2 bytes for each char
-        var bufView = new Uint16Array(buf);
+        var bufView = new Uint16Array(buf); 
         for (var i=0, strLen=str.length; i < strLen; i++) {
           bufView[i] = str.charCodeAt(i);
         }
@@ -61,14 +61,25 @@
         $(".main").append("Error: " + error + "<br>");
       };
 
+      connection.onclose = function() {
+        log("Connection closed")
+      };
+
       var log = function (a) {
         $(".main").append(a + "<br>");
       };
 
+      function ab2str(buf) {
+        return String.fromCharCode.apply(null, new Uint16Array(buf));
+      }
+
       connection.onmessage = function(e) {
         console.log(e);
+        if (!(e.data instanceof ArrayBuffer)) { log(e.data); return }
+        console.log(ab2str(e.data));
+        if (e.data.byteLength == 0) return
         var dv = new DataView(e.data);
-        var type = String.fromCharCode.apply(null, new Uint16Array(dv.getUint16()));
+        var type = String.fromCharCode.apply(null, new Uint16Array(dv.getUint16(e.data.slice(0,2))));
         switch(type) {
           case 'M':
             log("Seed is " + dv.getFloat64(2));
@@ -121,17 +132,20 @@
 
       var sendname = function () {
         var name   = "N" + $("#nameinput").val();
-        var buffer = new ArrayBuffer((name.length+1)*2);
-        var bv     = new Uint16Array(buffer);
-        for (var i=0, strLen=name.length; i<strLen; i++) {
-          bv[i] = name.charCodeAt(i);
-        }
+        var buffer = new ArrayBuffer(name.length * 2);
+        var dv     = new DataView(buffer);
+        for( i = 0; i < name.length; i++)
+          dv.setUint16(i*2, name.charCodeAt(i));
+
         connection.send(buffer);
-        console.log(buffer);
+        console.log();
       }
 
       var sendded = function() {
-        connection.send(str2ab("K"));
+        var buffer = new ArrayBuffer(2);
+        var dv     = new DataView(buffer);
+        dv.setUint16(0, "K".charCodeAt(0));
+        connection.send(buffer);
       }
 
       var sendpos = function() {
@@ -150,11 +164,12 @@
       }
 
       var sendhoop = function() {
-        var buffer = new ArrayBuffer(3);
+        var buffer = new ArrayBuffer(6);
         var dv     = new DataView(buffer);
-        dv.setUint16(0, "L".charCodeAt(0));
-        dv.setUint8(2, parseFloat($("#hoop").val()));
+        dv.setUint16(0, "G".charCodeAt(0));
+        dv.setUint32(2, parseInt($("#hoop").val()));
         connection.send(buffer);
+        console.log(ab2str(buffer));
       }
     </script>
   </body>
