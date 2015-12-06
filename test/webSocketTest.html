@@ -23,7 +23,7 @@
       <input type="text" class="sendbox" />
     </div>
     <script>
-      var connection = new WebSocket('ws://52.31.126.150:8080/test',);
+      var connection = new WebSocket('ws://52.31.126.150:8080/test');
 
       connection.opopen = function() {
         $(".main").append("Connected<br>");
