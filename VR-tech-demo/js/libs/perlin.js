@@ -1,9 +1,16 @@
+var seed = 1;
+
+function random() {
+    var x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+}
+
 //Map Dimension: width and height, power of two
 //unitSize: how big each part of the noise is, higher = more pixelated.
 //Roughness: standard noise roughness.
-function generateTerrainMap(mapDimension, unitSize, roughness) {
+function generateTerrainMap(mapDimension, unitSize, roughness, seedy) {
     "use strict";
-
+    seed = seedy;
     var map = create2DArray(mapDimension+1, mapDimension+1);
     startDisplacement(map, mapDimension);
     return map;
@@ -32,19 +39,19 @@ function generateTerrainMap(mapDimension, unitSize, roughness) {
             center = 0;
 
         // top left
-        map[0][0] = Math.random();
+        map[0][0] = random();
         topLeft = map[0][0];
 
         // bottom left
-        map[0][mapDimension] = Math.random();
+        map[0][mapDimension] = random();
         bottomLeft = map[0][mapDimension];
 
         // top right
-        map[mapDimension][0] = Math.random();
+        map[mapDimension][0] = random();
         topRight = map[mapDimension][0];
 
         // bottom right
-        map[mapDimension][mapDimension] = Math.random();
+        map[mapDimension][mapDimension] = random();
         bottomRight = map[mapDimension][mapDimension];
 
         // Center
@@ -141,7 +148,7 @@ function generateTerrainMap(mapDimension, unitSize, roughness) {
     // Random function to offset the center
     function displace(num){
         var max = num / (mapDimension + mapDimension) * roughness;
-        return (Math.random() - 0.5) * max;
+        return (random() - 0.5) * max;
     }
 
     // Normalize the value to make sure its within bounds

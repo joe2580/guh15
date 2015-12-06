@@ -1,15 +1,6 @@
 /*
 Setup three.js WebGL renderer
 */
-var renderer = new THREE.WebGLRenderer( { antialias: true } );
-
-/*
-Append the canvas element created by the renderer to document body element.
-*/
-document.body.appendChild( renderer.domElement );
-
-
-
 /*
 Create a three.js camera
 */
@@ -31,9 +22,6 @@ effect.setSize( window.innerWidth, window.innerHeight );
 var map = 0;
 var heightCoeff = 10;
 
-//POWER OF 2.
-
-map = generateTerrainMap(1024, 1, 8, seed);
 
 //Geometry object which gets sent to mesh.
 var geometry = new THREE.BufferGeometry();
@@ -42,6 +30,86 @@ var geometry = new THREE.BufferGeometry();
 var vertices = new Float32Array( map.length * 15000); // three components per vertex
 	
 // components of the position vector for each vertex are stored
+//Mesh mat.
+var wireMat = new THREE.MeshBasicMaterial( { wireframe: true  } );
+var material = new THREE.MeshPhongMaterial( { color: 0x999966, specular: 0x9999CC, shininess: 5, shading: THREE.FlatShading } );//material.side = THREE.DoubleSide;	//Make Double Sided.
+var mesh = new THREE.Mesh(geometry, material); //Create mesh from geometry.
+var wireMesh = new THREE.Mesh(geometry, wireMat); //Create mesh from geometry.
+
+var geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
+var material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
+var hoopObject = new THREE.Mesh( geometry, material );
+
+
+
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+
+geometry.center();
+var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+hemiLight.color.setHSL( 0.6, 0.75, 0.5 );
+hemiLight.groundColor.setHSL( 0.095, 0.5, 0.5 );
+hemiLight.position.set( 0, 500, 0 );
+scene.add( hemiLight );
+
+var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+dirLight.position.set( -1, 0.75, 1 );
+dirLight.position.multiplyScalar(50);
+dirLight.name = "dirlight";
+// dirLight.shadowCameraVisible = true;
+
+scene.add( dirLight );
+
+dirLight.castShadow = true;
+dirLight.shadowMapWidth = dirLight.shadowMapHeight = 1024*2;
+
+var d = 300;
+
+dirLight.shadowCameraLeft = -d;
+dirLight.shadowCameraRight = d;
+dirLight.shadowCameraTop = d;
+dirLight.shadowCameraBottom = -d;
+
+dirLight.shadowCameraFar = 3500;
+dirLight.shadowBias = -0.0001;
+dirLight.shadowDarkness = 0.35;
+
+
+
+//scene.add(wireMesh);
+mesh.renderDepth = 1000.0;  
+mesh.scale.set( 0.5, 0.5, 0.5 );
+mesh.rotateX(-(Math.PI/4));
+geometry.computeFaceNormals();
+scene.add(mesh);
+
+players.push(0);
+players.push(0);
+players.push(0);
+
+addGliders(players);
+
+var renderer = new THREE.WebGLRenderer( { antialias: true } );
+var caster = new THREE.Raycaster();
+
+document.body.appendChild( renderer.domElement );
+
+var keyboard = new THREEx.KeyboardState();
+
+function setSeed(seed) {
+
+
+/*
+Append the canvas element created by the renderer to document body element.
+*/
+
+
+
+//POWER OF 2.
+	map = generateTerrainMap(1024, 1, 8, seed);
+	update();
+
+
 // contiguously in the buffer.
 for(var x = 0; x < map.length; x++) 
 {
@@ -84,48 +152,6 @@ for(var x = 0; x < map.length; x++)
 	}
 }
 
-// itemSize = 3 because there are 3 values (components) per vertex
-geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-
-geometry.center();
-var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
-hemiLight.color.setHSL( 0.6, 0.75, 0.5 );
-hemiLight.groundColor.setHSL( 0.095, 0.5, 0.5 );
-hemiLight.position.set( 0, 500, 0 );
-scene.add( hemiLight );
-
-var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-dirLight.position.set( -1, 0.75, 1 );
-dirLight.position.multiplyScalar(50);
-dirLight.name = "dirlight";
-// dirLight.shadowCameraVisible = true;
-
-scene.add( dirLight );
-
-dirLight.castShadow = true;
-dirLight.shadowMapWidth = dirLight.shadowMapHeight = 1024*2;
-
-var d = 300;
-
-dirLight.shadowCameraLeft = -d;
-dirLight.shadowCameraRight = d;
-dirLight.shadowCameraTop = d;
-dirLight.shadowCameraBottom = -d;
-
-dirLight.shadowCameraFar = 3500;
-dirLight.shadowBias = -0.0001;
-dirLight.shadowDarkness = 0.35;
-
-//Mesh mat.
-var wireMat = new THREE.MeshBasicMaterial( { wireframe: true  } );
-var material = new THREE.MeshPhongMaterial( { color: 0x999966, specular: 0x9999CC, shininess: 5, shading: THREE.FlatShading } );//material.side = THREE.DoubleSide;	//Make Double Sided.
-var mesh = new THREE.Mesh(geometry, material); //Create mesh from geometry.
-var wireMesh = new THREE.Mesh(geometry, wireMat); //Create mesh from geometry.
-//scene.add(wireMesh);
-mesh.renderDepth = 1000.0;  
-mesh.scale.set( 0.5, 0.5, 0.5 );
-mesh.rotateX(-(Math.PI/4));
-scene.add(mesh);
 
 //mesh.visible(false);
 
@@ -138,8 +164,20 @@ var material = new THREE.ShaderMaterial( {
 } );
 */
 
-	var keyboard = new THREEx.KeyboardState();
 
+
+document.body.addEventListener( 'dblclick', function() {
+	effect.setFullScreen( true );
+});
+
+
+
+window.addEventListener("keydown", onkey, true);
+
+setInterval(function(){ sendpos(camera.position.x, camera.position.y, camera.position.z, camera.rotation.x, camera.rotation.y, 1); }, 300);
+
+window.addEventListener( 'resize', onWindowResize, false );
+}
 /*
 Request animation frame loop function
 */
@@ -150,12 +188,33 @@ function update() {
 	Apply rotation to cube mesh
 	*/
 	//mesh.rotation.y += 0.01;
+
+	updateWrld();
 	
-	//Constantly move forawrd.
+
+	var x = Math.floor(camera.position.x);
+	var y = Math.floor(camera.position.y);
+
+				//Constantly move forawrd.
 	var dir = new THREE.Vector3(0, 0, -1);
 	dir.applyEuler(camera.rotation);
 	dir.multiplyScalar(0.8);
-	camera.position.add(dir);
+
+	caster.set(camera.position, dir.normalize());
+	collisions = this.caster.intersectObjects(mesh);
+
+	if (collisions > 0)
+	{
+	 if (collisions[0].distance <= 350)
+		{
+
+		}
+	}
+	else
+	{
+		camera.position.add(dir);
+	}
+
 
 	/*
 	Update Keyboard Controls
@@ -187,8 +246,15 @@ function update() {
 	*/
 	controls.update();
 
+
+
+	if (players.length > 1)
+	{
+		addGliders(players);
+	}
+	scene.add(gliderObject);
 	/*
-	Render the scene through the VREffect.
+	Render the scene through the VREff	
 	*/
 	effect.render( scene, camera );
 
@@ -198,16 +264,39 @@ function update() {
 /*
 Kick off animation loop
 */
-update();
+
+function updateWrld() {
+	scene.remove(gliderObject);
+	scene.remove(hoopObject);
+
+    for (var i=0; i<=100; i++) {
+    	if (players[i] != null) {
+    		gliderObject.position.x = players[i].xpos;
+    		gliderObject.position.y = players[i].ypos;
+    		gliderObject.position.z = players[i].zpos;
+    		gliderObject.rotation.x = players[i].xrot;
+    		gliderObject.rotation.y = players[i].yrot;
+    		gliderObject.rotation.z = players[i].zrot;
+    		gliderObject.rotation.w = players[i].wrot;
+    		scene.add(gliderObject)
+    	}
+    	if (hoops[i] != null) {
+    		hoopObject.position.x = hoops[i].xpos;
+    		hoopObject.position.y = hoops[i].ypos;
+    		hoopObject.position.z = hoops[i].zpos;
+    		hoopObject.rotation.x = hoops[i].xrot;
+    		hoopObject.rotation.y = hoops[i].yrot;
+    		hoopObject.rotation.z = hoops[i].zrot;
+    		hoopObject.rotation.w = hoops[i].wrot;
+    		scene.add(hoopObject)
+    	}
+    }
+}
 
 
 /*
 Listen for double click event to enter full-screen VR mode
 */
-document.body.addEventListener( 'dblclick', function() {
-	effect.setFullScreen( true );
-});
-
 
 //HANDLE HEALTH WARNING HERE.
 /*
@@ -221,7 +310,6 @@ if (event.keyCode == 90) { // z
 }
 };
 
-window.addEventListener("keydown", onkey, true);
 
 
 /*
@@ -234,4 +322,3 @@ function onWindowResize() {
 	effect.setSize( window.innerWidth, window.innerHeight );
 }
 
-window.addEventListener( 'resize', onWindowResize, false );
