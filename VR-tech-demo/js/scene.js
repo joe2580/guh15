@@ -8,10 +8,7 @@ Append the canvas element created by the renderer to document body element.
 */
 document.body.appendChild( renderer.domElement );
 
-/*
-Create a three.js scene
-*/
-var scene = new THREE.Scene();
+
 
 /*
 Create a three.js camera
@@ -125,7 +122,7 @@ var material = new THREE.MeshPhongMaterial( { color: 0x999966, specular: 0x9999C
 var mesh = new THREE.Mesh(geometry, material); //Create mesh from geometry.
 var wireMesh = new THREE.Mesh(geometry, wireMat); //Create mesh from geometry.
 //scene.add(wireMesh);
-
+mesh.renderDepth = 1000.0;  
 mesh.scale.set( 0.5, 0.5, 0.5 );
 scene.add(mesh);
 
@@ -151,6 +148,8 @@ camera.lookAt(new THREE.Vector3( 50, 100, 100 ));
 Request animation frame loop function
 */
 function update() {
+	
+
 	/*
 	Apply rotation to cube mesh
 	*/
