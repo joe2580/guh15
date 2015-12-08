@@ -15,13 +15,19 @@ document.body.appendChild( renderer.domElement );
 /*
 Apply VR headset orientation and positional to camera.
 */
+
+//If (HMD)
 var controls = new THREE.VRControls( camera );
+//else
+controls = new THREE.OrbitControls( camera );
+//controls.target.set( 0, 0, 0 )
 
 /*
 Apply VR stereo rendering to renderer
 */
 var effect = new THREE.VREffect( renderer );
 effect.setSize( window.innerWidth, window.innerHeight );
+
 
 
 //Map is an array. generateTerrainMap is added in the html class.
@@ -146,15 +152,14 @@ Request animation frame loop function
 function update() {
 	
 	//Constantly move forawrd.
-	/*
+	
 	var dir = new THREE.Vector3(0, 0, -1);
 	dir.applyEuler(camera.rotation);
 	dir.multiplyScalar(0.8);
-	camera.position.add(dir);*/
-
-	/*
-	Update Keyboard Controls
-	*/
+	camera.position.add(dir);
+	//camera.lookAt(camera.position + (dir));*/
+	
+	//Update Keyboard Controls
 	if (keyboard.pressed("W"))
 	{
 		var dir = new THREE.Vector3(0, 0, -1);
