@@ -1,8 +1,8 @@
 /*
 Setup three.js WebGL renderer
 */
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+//var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 10000 );
 
 var renderer = new THREE.WebGLRenderer( { antialias: true } );
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -10,13 +10,6 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 Append the canvas element created by the renderer to document body element.
 */
 document.body.appendChild( renderer.domElement );
-
-
-
-/*
-Create a three.js camera
-*/
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
 
 /*
@@ -43,7 +36,7 @@ map = generateTerrainMap(1024, 1, 8, seed);
 var geometry = new THREE.BufferGeometry();
 
 //Array of vertices. Sized based on trial and error. Eep.
-var vertices = new Float32Array( map.length * 15000); // three components per vertex
+var vertices = new Float32Array( map.length *15000); // three components per vertex
 	
 // components of the position vector for each vertex are stored
 // contiguously in the buffer.

@@ -1,4 +1,4 @@
-var geometry = new THREE.SphereGeometry(3000, 60, 40);  
+var geometry = new THREE.SphereGeometry(9000, 60, 40);  
 var material = new THREE.MeshPhongMaterial( { map: THREE.ImageUtils.loadTexture('res/sky.jpg') } );
 /*
 Create a three.js scene
