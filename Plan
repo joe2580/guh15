@@ -1,8 +1,9 @@
-Movement
-Colouring/Shading
-
-Log on UI/Game Playing
-Streaming Player Positions back to server/users (Protocol)
-
-Set up Domain
-Server Protocol 
+Clean up Code
+Comment Code
+Reference Code
+Non VR Rendering
+Efficency
+   Indexing verts. Like, seriously.
+   LOD system?
+Mobile (Cardboard) support
+Trinus support.
