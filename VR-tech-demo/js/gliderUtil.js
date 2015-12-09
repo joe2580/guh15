@@ -1,6 +1,6 @@
 // instantiate a loader
 //Player shape/mesh.
-var geometry = new THREE.SphereGeometry(300, 32, 32);  
+var geometry = new THREE.SphereGeometry(30, 32, 32);  
 var material = new THREE.MeshPhongMaterial( { color: 0xFF0000, specular: 0xFF0000, shininess: 5, shading: THREE.FlatShading } );
 var gliderObject = new THREE.Mesh(geometry, material);  
 
