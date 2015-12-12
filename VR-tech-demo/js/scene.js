@@ -19,7 +19,7 @@ Apply VR headset orientation and positional to camera.
 //If (HMD)
 var controls = new THREE.VRControls( camera );
 //else
-controls = new THREE.OrbitControls( camera );
+//controls = new THREE.PointerLockControls( camera );
 //controls.target.set( 0, 0, 0 )
 
 /*
@@ -185,7 +185,7 @@ function update() {
 	/*
 	Update VR headset position and apply to camera.
 	*/
-	controls.update();
+	//controls.update();
 
 	
 	//Render the scene through the VREffect.

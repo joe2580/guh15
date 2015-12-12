@@ -9,24 +9,27 @@
  *
  */
 
-THREE.VREffect = function ( renderer, onError ) {
+THREE.VREffect = function (renderer, onError) {
 
 	var vrHMD;
 	var eyeTranslationL, eyeFOVL;
 	var eyeTranslationR, eyeFOVR;
+	var cameraL = new THREE.PerspectiveCamera();
+	var cameraR = new THREE.PerspectiveCamera();
 
-	function gotVRDevices( devices ) {
 
-		for ( var i = 0; i < devices.length; i ++ ) {
+	function gotVRDevices(devices) {
 
-			if ( devices[ i ] instanceof HMDVRDevice ) {
+		for (var i = 0; i < devices.length; i ++) {
+
+			if (devices[ i ] instanceof HMDVRDevice) {
 
 				vrHMD = devices[ i ];
 
-				if ( vrHMD.getEyeParameters !== undefined ) {
+				if (vrHMD.getEyeParameters !== undefined) {
 
-					var eyeParamsL = vrHMD.getEyeParameters( 'left' );
-					var eyeParamsR = vrHMD.getEyeParameters( 'right' );
+					var eyeParamsL = vrHMD.getEyeParameters('left');
+					var eyeParamsR = vrHMD.getEyeParameters('right');
 
 					eyeTranslationL = eyeParamsL.eyeTranslation;
 					eyeTranslationR = eyeParamsR.eyeTranslation;
@@ -37,10 +40,10 @@ THREE.VREffect = function ( renderer, onError ) {
 
 					// TODO: This is an older code path and not spec compliant.
 					// It should be removed at some point in the near future.
-					eyeTranslationL = vrHMD.getEyeTranslation( 'left' );
-					eyeTranslationR = vrHMD.getEyeTranslation( 'right' );
-					eyeFOVL = vrHMD.getRecommendedEyeFieldOfView( 'left' );
-					eyeFOVR = vrHMD.getRecommendedEyeFieldOfView( 'right' );
+					eyeTranslationL = vrHMD.getEyeTranslation('left');
+					eyeTranslationR = vrHMD.getEyeTranslation('right');
+					eyeFOVL = vrHMD.getRecommendedEyeFieldOfView('left');
+					eyeFOVR = vrHMD.getRecommendedEyeFieldOfView('right');
 
 				}
 
@@ -50,17 +53,17 @@ THREE.VREffect = function ( renderer, onError ) {
 
 		}
 
-		if ( vrHMD === undefined ) {
+		if (vrHMD === undefined) {
 
-			if ( onError ) onError( 'HMD not available' );
+			if (onError) onError('HMD not available');
 
 		}
 
 	}
 
-	if ( navigator.getVRDevices ) {
+	if (navigator.getVRDevices) {
 
-		navigator.getVRDevices().then( gotVRDevices );
+		navigator.getVRDevices().then(gotVRDevices);
 
 	}
 
@@ -68,9 +71,9 @@ THREE.VREffect = function ( renderer, onError ) {
 
 	this.scale = 1;
 
-	this.setSize = function( width, height ) {
+	this.setSize = function(width, height) {
 
-		renderer.setSize( width, height );
+		renderer.setSize(width, height);
 
 	};
 
@@ -81,96 +84,94 @@ THREE.VREffect = function ( renderer, onError ) {
 	var canvas = renderer.domElement;
 	var fullscreenchange = canvas.mozRequestFullScreen ? 'mozfullscreenchange' : 'webkitfullscreenchange';
 
-	document.addEventListener( fullscreenchange, function ( event ) {
+	document.addEventListener(fullscreenchange, function (event) {
 
 		isFullscreen = document.mozFullScreenElement || document.webkitFullscreenElement;
 
-	}, false );
+	}, false);
 
-	this.setFullScreen = function ( boolean ) {
+	this.setFullScreen = function (boolean) {
 
-		if ( vrHMD === undefined ) return;
-		if ( isFullscreen === boolean ) return;
+		if (vrHMD === undefined) return;
+		if (isFullscreen === boolean) return;
 
-		if ( canvas.mozRequestFullScreen ) {
+		if (canvas.mozRequestFullScreen) {
 
-			canvas.mozRequestFullScreen( { vrDisplay: vrHMD } );
+			canvas.mozRequestFullScreen({ vrDisplay: vrHMD });
 
-		} else if ( canvas.webkitRequestFullscreen ) {
+		} else if (canvas.webkitRequestFullscreen) {
 
-			canvas.webkitRequestFullscreen( { vrDisplay: vrHMD } );
+			canvas.webkitRequestFullscreen({ vrDisplay: vrHMD });
 
 		}
 
 	};
 
-	// render
+	//Render either in VR mode or normal.
+	this.render = function (scene, camera) {
+		if (vrHMD) {	//If we can detect a HMD, render vr.
+			renderVRMode(scene, camera);	
+		}
+		else { // Regular render mode if no HMD detected.	
+			renderNonVRMode(scene, camera);	
+		}
 
-	var cameraL = new THREE.PerspectiveCamera();
-	var cameraR = new THREE.PerspectiveCamera();
+		return;
+	};
 
-	this.render = function ( scene, camera ) {
+	function renderNonVRModeCi(scene, camera) {
+			//if scene is an array, render the first one.
+			if (scene instanceof Array) scene = scene[ 0 ];
+			renderer.render(scene, camera);
+	}
 
-		if ( vrHMD ) {
+	
+	function renderVRMode(scene, camera) {
+		var sceneL, sceneR;
 
-			var sceneL, sceneR;
+		if (scene instanceof Array) {
 
-			if ( scene instanceof Array ) {
+			sceneL = scene[ 0 ];
+			sceneR = scene[ 1 ];
 
-				sceneL = scene[ 0 ];
-				sceneR = scene[ 1 ];
+		} else {
 
-			} else {
-
-				sceneL = scene;
-				sceneR = scene;
-
-			}
-
-			var size = renderer.getSize();
-			size.width /= 2;
-
-			renderer.enableScissorTest( true );
-			renderer.clear();
-
-			if ( camera.parent === undefined ) camera.updateMatrixWorld();
-
-			cameraL.projectionMatrix = fovToProjection( eyeFOVL, true, camera.near, camera.far );
-			cameraR.projectionMatrix = fovToProjection( eyeFOVR, true, camera.near, camera.far );
-
-			camera.matrixWorld.decompose( cameraL.position, cameraL.quaternion, cameraL.scale );
-			camera.matrixWorld.decompose( cameraR.position, cameraR.quaternion, cameraR.scale );
-
-			cameraL.translateX( eyeTranslationL.x * this.scale );
-			cameraR.translateX( eyeTranslationR.x * this.scale );
-
-			// render left eye
-			renderer.setViewport( 0, 0, size.width, size.height );
-			renderer.setScissor( 0, 0, size.width, size.height );
-			renderer.render( sceneL, cameraL );
-
-			// render right eye
-			renderer.setViewport( size.width, 0, size.width, size.height );
-			renderer.setScissor( size.width, 0, size.width, size.height );
-			renderer.render( sceneR, cameraR );
-
-			renderer.enableScissorTest( false );
-
-			return;
+			sceneL = scene;
+			sceneR = scene;
 
 		}
 
-		// Regular render mode if not HMD
+		var size = renderer.getSize();
+		size.width /= 2;
 
-		if ( scene instanceof Array ) scene = scene[ 0 ];
+		renderer.enableScissorTest(true);
+		renderer.clear();
 
-		renderer.render( scene, camera );
+		if (camera.parent === undefined) camera.updateMatrixWorld();
 
-	};
+		cameraL.projectionMatrix = fovToProjection(eyeFOVL, true, camera.near, camera.far);
+		cameraR.projectionMatrix = fovToProjection(eyeFOVR, true, camera.near, camera.far);
 
-	//
+		camera.matrixWorld.decompose(cameraL.position, cameraL.quaternion, cameraL.scale);
+		camera.matrixWorld.decompose(cameraR.position, cameraR.quaternion, cameraR.scale);
 
-	function fovToNDCScaleOffset( fov ) {
+		cameraL.translateX(eyeTranslationL.x * this.scale);
+		cameraR.translateX(eyeTranslationR.x * this.scale);
+
+		// render left eye
+		renderer.setViewport(0, 0, size.width, size.height);
+		renderer.setScissor(0, 0, size.width, size.height);
+		renderer.render(sceneL, cameraL);
+
+		// render right eye
+		renderer.setViewport(size.width, 0, size.width, size.height);
+		renderer.setScissor(size.width, 0, size.width, size.height);
+		renderer.render(sceneR, cameraR);
+
+		renderer.enableScissorTest(false);
+	}
+
+	function fovToNDCScaleOffset(fov) {
 
 		var pxscale = 2.0 / (fov.leftTan + fov.rightTan);
 		var pxoffset = (fov.leftTan - fov.rightTan) * pxscale * 0.5;
@@ -180,7 +181,7 @@ THREE.VREffect = function ( renderer, onError ) {
 
 	}
 
-	function fovPortToProjection( fov, rightHanded, zNear, zFar ) {
+	function fovPortToProjection(fov, rightHanded, zNear, zFar) {
 
 		rightHanded = rightHanded === undefined ? true : rightHanded;
 		zNear = zNear === undefined ? 0.01 : zNear;
@@ -226,18 +227,18 @@ THREE.VREffect = function ( renderer, onError ) {
 		return mobj;
 	}
 
-	function fovToProjection( fov, rightHanded, zNear, zFar ) {
+	function fovToProjection(fov, rightHanded, zNear, zFar) {
 
 		var DEG2RAD = Math.PI / 180.0;
 
 		var fovPort = {
-			upTan: Math.tan( fov.upDegrees * DEG2RAD ),
-			downTan: Math.tan( fov.downDegrees * DEG2RAD ),
-			leftTan: Math.tan( fov.leftDegrees * DEG2RAD ),
-			rightTan: Math.tan( fov.rightDegrees * DEG2RAD )
+			upTan: Math.tan(fov.upDegrees * DEG2RAD),
+			downTan: Math.tan(fov.downDegrees * DEG2RAD),
+			leftTan: Math.tan(fov.leftDegrees * DEG2RAD),
+			rightTan: Math.tan(fov.rightDegrees * DEG2RAD)
 		};
 
-		return fovPortToProjection( fovPort, rightHanded, zNear, zFar );
+		return fovPortToProjection(fovPort, rightHanded, zNear, zFar);
 
 	}
 

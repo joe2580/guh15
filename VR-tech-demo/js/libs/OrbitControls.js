@@ -187,9 +187,19 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		position.copy( this.center ).add( offset );
 
-		var point = new THREE.Vector3( 0, 0, -1 );
+		var point = new THREE.Vector3( 0, 0, 1 );
 		point.applyQuaternion( object.quaternion );
-		this.object.lookAt(point);
+
+
+
+		
+		var length = object.position.sub(point);
+		length.normalize();
+		this.object.lookAt(camera.position.add(length));
+		/*
+		this.object.lookAt(camera.position + length);
+		*/
+		
 		
 
 		thetaDelta = 0;

@@ -1,9 +1,43 @@
-Clean up Code
-Comment Code
-Reference Code
-Non VR Rendering
-Efficency
-   Indexing verts. Like, seriously.
-   LOD system?
-Mobile (Cardboard) support
-Trinus support.
+Non VR Setup	
+	Controls
+	Camera
+Checking for HMD, switching between VR and non VR
+	Change camera system
+	Change control system
+
+
+
+
+
+
+
+
+
+
+Index.HTML
+	Scene.js
+		Controls
+		Camera
+			Oculus Rift
+				VRControls (rename, not actually controls, just sets up rift)
+				VREffect
+			NonVR
+				Normal Monitor display.
+			Open Source VR Solution?
+				Support for Cardboard with Trinus
+			Standalone Cardboard?
+				Needs loads of optimising, otherwise should work.
+				PhoneVR.js
+		World
+			Seed
+			Generation
+		Netcode
+			Players
+			Rings
+
+
+
+
+VRControls - VRTracking
+OrbitControls - MouseTracking
+VREffect - renderCamera (has support for rendering both vr and non vr cameras.)
