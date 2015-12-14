@@ -1,0 +1,606 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"rotate",
+				"rotateCameraY"
+			],
+			[
+				"get",
+				"getFloat64"
+			],
+			[
+				"glide",
+				"gliderObject"
+			],
+			[
+				"gli",
+				"gliderObject"
+			],
+			[
+				"s",
+				"startIndex"
+			],
+			[
+				"obj",
+				"object"
+			],
+			[
+				"ver",
+				"vertices"
+			],
+			[
+				"mnt",
+				"monthCheck"
+			],
+			[
+				"can",
+				"canvasHeight"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"quad2",
+				"quad2Print"
+			],
+			[
+				"q",
+				"quad1Print"
+			],
+			[
+				"pri",
+				"println"
+			],
+			[
+				"inp",
+				"inputPoly"
+			],
+			[
+				"Qua",
+				"QuadPoly"
+			],
+			[
+				"ste",
+				"stepSize"
+			],
+			[
+				"poi",
+				"pointsAtLOD"
+			],
+			[
+				"Get",
+				"GetMidPoint"
+			],
+			[
+				"ve",
+				"vector3"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "js/skybox.js",
+			"settings":
+			{
+				"buffer_size": 995,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/scene.js",
+			"settings":
+			{
+				"buffer_size": 7002,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/VREffect.js",
+			"settings":
+			{
+				"buffer_size": 6173,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/JavaC.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 73.0,
+		"last_filter": "git status",
+		"selected_items":
+		[
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git di",
+				"Git: Diff Tool Current File"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 571.0
+	},
+	"console":
+	{
+		"height": 162.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/res"
+	],
+	"file_history":
+	[
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/vrtest.sublime-project",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1450097548/manchester/home/mbyx4tp2/COMP16121/ex10/task14.2/MarkAnalysis.java",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/VREffect.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/scene.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/index.html",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/skybox.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/VRControls.js",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1450087886/manchester/home/mbyx4tp2/COMP16121/ex9/task13.7/StopClock.java",
+		"/C/Users/Tom/Desktop/Wait for number input",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo-working/js/scene.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/libs/perlin.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/gliderUtil.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/netcode.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/scene.js.funky.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/libs/ColladaLoader.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/res/models/glider.obj",
+		"/C/Users/Tom/Desktop/guh15/test/webSocketProtocolTest.html",
+		"/C/Users/Tom/Desktop/guh15/Plan",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/shaders/skyShaders.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/libs/THREEx.KeyboardState.js",
+		"/C/Users/Tom/Desktop/guh15/VR-tech-demo/js/libs/three.min.js",
+		"/C/Users/Tom/Desktop/rift/vr-web-examples/threejs-vr-boilerplate/index.html",
+		"/C/Users/Tom/Desktop/rift/vr-web-examples/threejs-vr-boilerplate/js/VREffect.js",
+		"/C/Users/Tom/Desktop/rift/vr-web-examples/threejs-vr-boilerplate/js/VRControls.js",
+		"/C/Users/Tom/.ssh/id_rsa.pub",
+		"/C/Users/Tom/Desktop/test/js/libs/noisejs/demo.html",
+		"/C/Users/Tom/Desktop/test/js/libs/noisejs/perlin.js",
+		"/C/Users/Tom/Desktop/test/js/fractal..bak2.js",
+		"/C/Users/Tom/Desktop/test/page.html",
+		"/C/Users/Tom/Desktop/test/js/fractal.js",
+		"/C/Users/Tom/Desktop/test/js/fractal.bak.js",
+		"/C/Users/Tom/Desktop/test/js/libs/three.min.js",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1449232970/manchester/home/mbyx4tp2/COMP16121/ex8/task11.3/Student.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1449233759/manchester/home/mbyx4tp2/COMP16121/ex8/task11.3/Phone.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1449228893/manchester/home/mbyx4tp2/COMP16121/ex8/task11.3/Account.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1449228755/manchester/home/mbyx4tp2/COMP16121/ex8/task11.3/Phone.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1449228223/manchester/home/mbyx4tp2/COMP16121/ex8/task11.3/StudentsCalling.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1449228994/manchester/home/mbyx4tp2/COMP16121/ex8/task11.3/Student.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1449018766/manchester/home/mbyx4tp2/COMP15111/ex4/part1.s",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448727819/manchester/home/mbyx4tp2/101Website/mockup/Structure.txt",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448615506/manchester/home/mbyx4tp2/101Website/resources/Resources.txt",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448615239/manchester/home/mbyx4tp2/101Website/presentation/presentationOverview.txt",
+		"/C/Users/Tom/AppData/Local/Temp/sublime-sftp-browse-1448616352/manchester/home/mbyx4tp2/101Website/mockup/homepage.html",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448237162/manchester/home/mbyx4tp2/COMP10120/ex6/login.php",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448559360/Pi/home/pi/COMP10120/ex7/homepage.php",
+		"/C/Users/Tom/AppData/Roaming/Sublime Text 3/Packages/User/sftp_servers/Pi",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448542464/manchester/home/mbyx4tp2/101Website/presentationOverview.txt",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448237240/manchester/home/mbyx4tp2/COMP10120/ex6/welcome.php",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448237222/manchester/home/mbyx4tp2/COMP10120/ex6/styles.css",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448237063/manchester/home/mbyx4tp2/COMP10120/ex6/homepage.php",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448236970/manchester/home/mbyx4tp2/COMP10120/ex6/implementation.html",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448234871/manchester/home/mbyx4tp2/COMP10120/ex5/styles.css",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448234860/manchester/home/mbyx4tp2/COMP10120/ex5/implementation.html",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448234576/manchester/home/mbyx4tp2/COMP10120/ex5/homepage.html",
+		"/C/Users/Tom/Desktop/input.html",
+		"/C/Users/Tom/Desktop/welcome.php",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448030198/manchester/home/mbyx4tp2/COMP16121/ex6/task8.8/CalendarHighlight.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448030166/manchester/home/mbyx4tp2/COMP16121/ex6/task8.7/TruthTable34.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448030121/manchester/home/mbyx4tp2/COMP16121/ex6/task10.4/QuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448030130/manchester/home/mbyx4tp2/COMP16121/ex6/task10.4/AddQuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448030109/manchester/home/mbyx4tp2/COMP16121/ex6/task10.4/CompareQuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448030051/manchester/home/mbyx4tp2/COMP16121/ex6/task10.3/CompareQuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448030063/manchester/home/mbyx4tp2/COMP16121/ex6/task10.3/QuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448030027/manchester/home/mbyx4tp2/COMP16121/ex6/task10.2/QuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1448029991/manchester/home/mbyx4tp2/COMP16121/ex6/task10.2/AddQuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447997678/manchester/home/mbyx4tp2/COMP16121/ex6/task10.4/QuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447997133/manchester/home/mbyx4tp2/COMP16121/ex6/task10.4/AddQuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447995851/manchester/home/mbyx4tp2/COMP16121/ex6/task10.3/CompareQuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447996500/manchester/home/mbyx4tp2/COMP16121/ex6/task10.3/run-tests",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447994953/manchester/home/mbyx4tp2/COMP16121/ex6/task10.3/QuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447994669/manchester/home/mbyx4tp2/COMP16121/ex6/task10.2/run-tests",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447994645/manchester/home/mbyx4tp2/COMP16121/ex6/task10.2/AddQuadPoly.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447846308/manchester/home/mbyx4tp2/COMP16121/ex5/task8.5/CommonFactorsTable.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447846032/manchester/home/mbyx4tp2/COMP16121/ex6/task8.7/TruthTable34.java",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447363231/manchester/home/mbyx4tp2/.ssh/id_rsa",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1447363835/manchester/home/mbyx4tp2/.ssh/id_rsa.pub",
+		"/C/Users/Tom/AppData/Local/Temp/7zOAA1E.tmp/BluePrints.sbc",
+		"/C/Users/Tom/AppData/Local/Temp/7zOA00F.tmp/CubeBlocks.sbc",
+		"/C/Users/Tom/AppData/Local/Temp/7zO92F4.tmp/BluePrints.sbc",
+		"/C/Users/Tom/AppData/Local/Temp/7zO61A6.tmp/BlockCategories.sbc",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446819741/manchester/home/mbyx4tp2/COMP10120/RWReport/report.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446699605/manchester/home/mbyx4tp2/COMP10120/ex3/image.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446787436/manchester/home/mbyx4tp2/COMP10120/RWReport/report.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446753955/manchester/home/mbyx4tp2/COMP00900/report/report.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446763175/manchester/home/mbyx4tp2/COMP10120/RWReport/report.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446762981/manchester/home/mbyx4tp2/COMP10120/RWReport/suggestions.txt",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446763013/manchester/home/mbyx4tp2/COMP10120/RWReport/likes.txt",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446762964/manchester/home/mbyx4tp2/COMP10120/RWReport/likes.txt",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446668809/manchester/home/mbyx4tp2/COMP10120/RWReport/report.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446761164/manchester/home/mbyx4tp2/COMP10120/RWReport/suggestions.txt",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446761042/manchester/home/mbyx4tp2/COMP10120/RWReport/likes.txt",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446700320/manchester/home/mbyx4tp2/COMP10120/ex3/fire-and-ice.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446700299/manchester/home/mbyx4tp2/COMP10120/ex3/courses-reflection.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446700265/manchester/home/mbyx4tp2/COMP10120/ex3/sections.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446699575/manchester/home/mbyx4tp2/COMP10120/ex3/f-w.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446696571/manchester/home/mbyx4tp2/COMP00900/report/report.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446696524/manchester/home/mbyx4tp2/COMP10120/ex3/image.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446652660/manchester/home/mbyx4tp2/COMP10120/RWReport/report.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446430384/manchester/home/mbyx4tp2/COMP10120/RWReport/report.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1446327661/manchester/home/mbyx4tp2/COMP10120/RWReport/report.tex",
+		"/C/Users/Tom/AppData/Roaming/Sublime Text 3/Packages/User/sftp_servers/Hack2015",
+		"/C/Users/Tom/AppData/Local/Temp/sublime-sftp-browse-1445479963/manchester/home/mbyx4tp2/hackmanchester.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1445479996/manchester/home/mbyx4tp2/COMP10120/ex3/image.tex",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1445479963/manchester/home/mbyx4tp2/COMP10120/ex3/f-w.tex",
+		"/C/Users/Tom/Desktop/hackmanchester.pdf",
+		"/C/Users/Tom/Desktop/Hack Manchester.tex",
+		"/C/Users/Tom/Desktop/Dropbox/ReturnFaceVerts",
+		"/C/Users/Tom/Desktop/Dropbox/Productivity/Programming/Code/C++/QuadSphere/Pseudo Code/ReturnFaceVerts",
+		"/C/Users/Tom/Desktop/Maths Week 2",
+		"/C/Users/Tom/Desktop/Dropbox/Productivity/Programming/Code/C++/QuadSphere/Pseudo Code/Adding Noise.pseudo",
+		"/C/Users/Tom/Desktop/Planet Docs/Junk8.cpp",
+		"/C/Users/Tom/Desktop/Dropbox/Productivity/Programming/Code/C++/QuadSphere/Pseudo Code/Adding Noise",
+		"/C/Users/Tom/Desktop/Planet Docs/Junk7",
+		"/C/Users/Tom/Desktop/Planet Docs/Junk2.cpp",
+		"/C/Users/Tom/Desktop/Planet Docs/Junk",
+		"/C/Users/Tom/Desktop/Planet Docs/Junk5.cpp",
+		"/C/Users/Tom/Desktop/Planet Docs/Junk4",
+		"/C/Users/Tom/Desktop/Planet Docs/Junk6.cpp",
+		"/C/Users/Tom/Desktop/Planet Docs/Junk3",
+		"/C/Users/Tom/Desktop/QuadSphere/Pseudo Code/Increase Detail",
+		"/C/Users/Tom/Desktop/QuadSphere/Pseudo Code/1.cpp",
+		"/C/Users/Tom/Desktop/QuadSphere/Pseudo Code/2.txt",
+		"/C/Users/Tom/Desktop/QuadSphere/Pseudo Code/Quadtree.ccp",
+		"/C/Users/Tom/Desktop/QuadSphere/Pseudo Code/LOD.cpp",
+		"/C/Users/Tom/Desktop/QuadSphere/Pseudo Code/LOD 2.cpp",
+		"/C/Users/Tom/Desktop/QuadSphere/Pseudo Code/ReturnFaceVerts",
+		"/C/Users/Tom/Desktop/QuadSphere/Pseudo Code/Increase Detail Concept 2",
+		"/C/users/tom/appdata/local/temp/sublime-sftp-browse-1444050734/manchester/home/mbyx4tp2/COMP16121/ex1/task2.5/sorted"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dir",
+			"b",
+			"/",
+			"camera",
+			"ook",
+			"look",
+			"lookAt",
+			"1.5",
+			"2",
+			"vrInput",
+			"updateVR",
+			"hoops[jobject.id]",
+			"players",
+			"gliderObject",
+			"k",
+			";\n",
+			"pos",
+			"caster",
+			"caster#",
+			"dir",
+			"map",
+			"scene",
+			"Math.random()",
+			"math.random()",
+			"log",
+			"Math.random()",
+			"seed",
+			"$(",
+			"y",
+			"x",
+			"health",
+			"object",
+			", ",
+			"x",
+			"y",
+			"x",
+			"4",
+			"1dPos",
+			"pMonth",
+			"CMP",
+			";",
+			"bcs",
+			"REF",
+			"waterfall",
+			"professional",
+			"REF",
+			"\\cite{bcs}",
+			"z",
+			"y",
+			"x"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"exponential",
+			"1.7",
+			"1.5",
+			"hoop",
+			"hoops",
+			"hoopObject",
+			"jobject",
+			"rot",
+			"random()",
+			"(y/4)",
+			"(x/4)",
+			"x*10",
+			"y*10",
+			"x*10",
+			"6",
+			"oneDimPos",
+			"",
+			"verts[(i*3) + 2]",
+			"verts[(i*3) + 1]",
+			"verts[(i*3)]",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "js/skybox.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 995,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								553,
+								553
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/scene.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7002,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6250,
+								6255
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 33.0,
+						"translation.y": 3851.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/VREffect.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6173,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								673,
+								673
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 96.0,
+						"translation.y": 520.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 40.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 248.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 130.0
+	},
+	"output.sftp":
+	{
+		"height": 32.0
+	},
+	"pinned_build_system": "",
+	"project": "vrtest.sublime-project",
+	"replace":
+	{
+		"height": 80.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 625.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 475.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 214.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

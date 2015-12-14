@@ -96,15 +96,10 @@ THREE.VREffect = function (renderer, onError) {
 		if (isFullscreen === boolean) return;
 
 		if (canvas.mozRequestFullScreen) {
-
 			canvas.mozRequestFullScreen({ vrDisplay: vrHMD });
-
 		} else if (canvas.webkitRequestFullscreen) {
-
 			canvas.webkitRequestFullscreen({ vrDisplay: vrHMD });
-
 		}
-
 	};
 
 	//Render either in VR mode or normal.
@@ -119,7 +114,7 @@ THREE.VREffect = function (renderer, onError) {
 		return;
 	};
 
-	function renderNonVRModeCi(scene, camera) {
+	function renderNonVRMode(scene, camera) {
 			//if scene is an array, render the first one.
 			if (scene instanceof Array) scene = scene[ 0 ];
 			renderer.render(scene, camera);
@@ -130,15 +125,11 @@ THREE.VREffect = function (renderer, onError) {
 		var sceneL, sceneR;
 
 		if (scene instanceof Array) {
-
 			sceneL = scene[ 0 ];
 			sceneR = scene[ 1 ];
-
 		} else {
-
 			sceneL = scene;
 			sceneR = scene;
-
 		}
 
 		var size = renderer.getSize();
