@@ -2,11 +2,11 @@
 Setup three.js WebGL renderer
 */
 //var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 10000 );
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000000 );
 
 var renderer = new THREE.WebGLRenderer( { antialias: true } );
 
-var playerPos = new THREE.Vector3(0, 0, 5);
+var playerPos = new THREE.Vector3(0, 0, -100);
 var playerDir = new THREE.Vector3(0, 0, -1);
 
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -29,11 +29,9 @@ Apply VR stereo rendering to renderer
 var effect = new THREE.VREffect( renderer );
 effect.setSize( window.innerWidth, window.innerHeight );
 
-
-
 //Map is an array. generateTerrainMap is added in the html class.
 var map = 0;
-var heightCoeff = 10;
+var heightCoeff = 6;
 
 //POWER OF exponential.
 
@@ -59,7 +57,7 @@ for(var x = 0; x < map.length; x++)
 			//console.log("map[" + x + "][" + y + "] = " + map[x][y]
 			    // + "1D Position: " + (y + (x * map.length)));		
 
-			var exponential = 2;
+			var exponential = 2.6;
 			//Top Triangle.
 			vertices[(oneDimPos*3*6) + 0 ] = x;	//X1
 			vertices[(oneDimPos*3*6) + 1 ] = y;	//Y1
@@ -124,7 +122,7 @@ dirLight.shadowDarkness = 0.35;
 //Mesh mat.
 var wireMat = new THREE.MeshBasicMaterial( { wireframe: true  } );
 var material = new THREE.MeshPhongMaterial( { color: 0x999966, specular: 0x9999CC, shininess: 5, shading: THREE.SmoothShading } );//material.side = THREE.DoubleSide;	//Make Double Sided.
-//material = new THREE.MeshPhongMaterial( { color: 0xFFCC66, specular: 0x999966, shininess: 10, shading: THREE.SmoothShading } );
+//material = new THREE.MeshPhongMaterial( { color: 0x666600, specular: 0x666666, shininess: 2, shading: THREE.SmoothShading } );
 var mesh = new THREE.Mesh(geometry, material); //Create mesh from geometry.
 var wireMesh = new THREE.Mesh(geometry, wireMat); //Create mesh from geometry.
 scene.add(mesh);
@@ -133,10 +131,15 @@ geometry.computeVertexNormals();
 
 //camera.position.z = 5;
 
-mesh.renderDepth = 1000.0;  
-mesh.scale.set( 0.5, 0.5, 0.5 );
+mesh.renderDepth = 1000.0; 
+
+var scale = 4;
+mesh.scale.set( scale, scale, scale );
 mesh.rotateX(-(Math.PI/4));
 
+//Fog
+scene.fog = new THREE.FogExp2(0xCCCCFF,0.0004);
+//scene.fog.color.setHSL( 0.51, 0.6, 0.6 );
 
 camLookAt = scene.position;
 
@@ -163,31 +166,22 @@ function update() {
 	checkRotation();
 
 	//Update Keyboard Controls
-	if (keyboard.pressed("W"))
-	{
-		playerPos.add(playerDir);
-	}
-	else if (keyboard.pressed("S"))
-	{
-		//var dir = new THREE.Vector3(0, 0, 1);
-		//dir.applyEuler(camera.rotation);
-		//camera.position.add(dir);
-	}
-
-	if (keyboard.pressed("A"))
-	{
-		//camera.position.y -= exponential;
-	}
-	else if (keyboard.pressed("D"))
-	{
-			//camera.position.y += exponential;
-	}
-	/*
-	Update VR headset position and apply to camera.
-	*/
+	if (keyboard.pressed("shift")){
+		camera.position.copy(playerPos);
+		//Update camera and move player.
+		camera.lookAt(playerPos.add(playerDir));
+		camera.lookAt(playerPos.add(playerDir));
+		camera.lookAt(playerPos.add(playerDir));
+		camera.lookAt(playerPos.add(playerDir));
+		camera.lookAt(playerPos.add(playerDir));
+		camera.lookAt(playerPos.add(playerDir));
+	} 
+	//Update VR headset position and apply to camera.
+	
 	//controls.update();
 
 	camera.position.copy(playerPos);
+	//Update camera and move player.
 	camera.lookAt(playerPos.add(playerDir));
 	
 	//Render the scene through the VREffect.
@@ -203,6 +197,8 @@ function checkRotation(){
         z = playerDir.z,
         rotSpeed = 0.2;
 
+        //camera.up = new THREE.Vector3(0,1,0);
+
     if (keyboard.pressed("A")){ 
         playerDir.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
         playerDir.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
@@ -210,8 +206,17 @@ function checkRotation(){
         playerDir.x = x * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
         playerDir.z = z * Math.cos(rotSpeed) + x * Math.sin(rotSpeed);
     }
-    //camera.up = new THREE.Vector3(0,1,0);
     
+     if (keyboard.pressed("W")){ 
+        playerDir.y = y * Math.cos(rotSpeed) - z * Math.sin(rotSpeed);
+       // playerDir.z = y * Math.sin(rotSpeed) + z * Math.cos(rotSpeed);
+    } else if (keyboard.pressed("S")){
+        playerDir.y = y * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
+       // playerDir.z = y * Math.sin(rotSpeed) - z * Math.cos(rotSpeed);
+
+
+  
+    }
 } 
 
 

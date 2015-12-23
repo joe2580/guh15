@@ -18,7 +18,8 @@ var geometry = new THREE.SphereGeometry(9000, 60, 40);
 // set the format, likely RGB unless you've gone crazy
 //cubemap.format = THREE.RGBFormat;
 
-var material = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture('res/sky.jpg') } );
+var material = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture('res/sky.jpg'), fog: false} );
+//material = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture('res/greenSky.jpg') } );
 
 //material = new THREE.MeshBasicMaterial( {color: 0xffffff, envMap: cubemap} );
 
