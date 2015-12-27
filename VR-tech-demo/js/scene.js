@@ -91,6 +91,7 @@ for(var x = 0; x < map.length; x++)
 geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 
 geometry.center();
+
 var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
 hemiLight.color.setHSL( 0.6, 0.75, 0.5 );
 hemiLight.groundColor.setHSL( 0.095, 0.5, 0.5 );
@@ -102,22 +103,21 @@ dirLight.position.set( -1, 0.75, 1 );
 dirLight.position.multiplyScalar(50);
 dirLight.name = "dirlight";
 // dirLight.shadowCameraVisible = true;
-
-scene.add( dirLight );
-
 dirLight.castShadow = true;
 dirLight.shadowMapWidth = dirLight.shadowMapHeight = 1024*exponential;
 
 var d = 300;
-
 dirLight.shadowCameraLeft = -d;
 dirLight.shadowCameraRight = d;
 dirLight.shadowCameraTop = d;
 dirLight.shadowCameraBottom = -d;
-
 dirLight.shadowCameraFar = 3500;
 dirLight.shadowBias = -0.0001;
 dirLight.shadowDarkness = 0.35;
+
+scene.add( dirLight );
+
+
 
 //Mesh mat.
 var wireMat = new THREE.MeshBasicMaterial( { wireframe: true  } );
