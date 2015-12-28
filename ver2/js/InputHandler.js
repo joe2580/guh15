@@ -34,7 +34,7 @@ var inputHandler = {
 
 		if (event.keyCode == 16) { // Shift
 			camera.position.copy(playerPos); //Update camera, move player.
-			var speedBoost = new THREE.Vector3(playerDir.x * 10, playerDir.y * 10, playerDir.z * 10);
+			var speedBoost = new THREE.Vector3(playerDir.x * 100, playerDir.y * 100, playerDir.z * 100);
 			camera.lookAt(playerPos.add(speedBoost));	
 		}
 
