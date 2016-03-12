@@ -41,5 +41,8 @@ var inputHandler = {
 		if (event.keyCode == 90) { // Z
 			controls.zeroSensor();	//Zero positional sensor.
 		}
+
+		camera.lookAt(playerPos.add(playerDir));
+	
 	}
 };

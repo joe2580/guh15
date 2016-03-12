@@ -1,4 +1,4 @@
-var geometry = new THREE.SphereGeometry(9000, 60, 40);  
+/*var geometry = new THREE.SphereGeometry(9000, 60, 40);  
 
 //geometry = new THREE.BoxGeometry(10000, 10000, 10000);
 
@@ -32,12 +32,14 @@ var material = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture(
 */
 var scene = new THREE.Scene();
 
+/*
 skyBox = new THREE.Mesh(geometry, material);  
 //Flip so it's internally textured.
 skyBox.scale.set(-1, 1, 1);  
 skyBox.eulerOrder = 'XZY';  
 skyBox.renderDepth = 1000.0;  
 scene.add(skyBox);  
+*/
 
 
 
